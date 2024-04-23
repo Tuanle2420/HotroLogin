@@ -1,0 +1,8 @@
+1. Xử lý file đọc file lớn tránh tràn bộ đệm
+2. Sử dụng script lọc ra các trang có cùng đường dẫn tới trang đăng nhập
+3. Sử dụng burpsuit truy cập vào một mẫu đăng nhập sau đó đẩy đến burp instruder
+4. Từ các trang có cùng đường dẫn đăng nhập lọc ra tài khoản và mật khẩu
+ - Lấy tên đường dẫn đặt làm tên folder
+ - trong folder chứa 2 file: username và password
+5. Vứt tài khoản và mật khẩu vào burp instruder cho chạy.
+6. Tài khoản mật khẩu nào đăng nhập thành công sẽ trả về 200
