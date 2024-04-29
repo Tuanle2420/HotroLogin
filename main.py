@@ -47,12 +47,17 @@ if __name__ == "__main__":
     if not os.path.exists('main_directory'):
         os.mkdir('main_directory')
 
+    #thư mục lưu tên đường dẫn
+    # flinks = open('links.txt', 'w', encoding='utf-8')
+
     #đọc file và xử lý tên miền
     with open('filter_login.txt','r', encoding='utf-8') as file:
         for line in file:
             tmp = extract_urls(line.strip())
             if tmp != []:
                 domain = urlparse(tmp[0]).netloc
+                us_pss = line.replace(tmp[0],'').strip().split(':')              
+
             #thư mục con 
             sub_directory = os.path.join('main_directory', domain)
             new_sub_directory = sub_directory.replace(':', '_')
@@ -62,6 +67,17 @@ if __name__ == "__main__":
 
             file_name = os.path.basename(sub_directory) + '.txt'
             file_path = os.path.join(new_sub_directory,file_name)
+            user_file_path = os.path.join(new_sub_directory,'username.txt')
+            pass_file_path = os.path.join(new_sub_directory,'password.txt')
             with open(file_path, 'a', encoding='utf-8') as domain_file:
                 domain_file.write(line)
-                
+            
+            if len(us_pss) == 2: 
+
+                with open(user_file_path, 'a', encoding='utf-8') as us:
+                    us.write(us_pss[0])
+                    us.write('\n')
+                with open(pass_file_path, 'a', encoding='utf-8') as ps:
+                    ps.write(us_pss[1])
+                    ps.write('\n')
+
